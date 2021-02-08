@@ -13,6 +13,7 @@ class ViewController: NSViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.title = "Compass Wallpaper"
     }
 
     override var representedObject: Any? {

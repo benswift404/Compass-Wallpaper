@@ -11,16 +11,18 @@
 		14BCB1BE25CC41B100BEFE20 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BCB1BD25CC41B100BEFE20 /* ViewController.swift */; };
 		14BCB1C025CC41B300BEFE20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14BCB1BF25CC41B300BEFE20 /* Assets.xcassets */; };
 		14BCB1C325CC41B300BEFE20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14BCB1C125CC41B300BEFE20 /* Main.storyboard */; };
+		14BCB1CD25CC438E00BEFE20 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BCB1CC25CC438E00BEFE20 /* ImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		14BCB1B825CC41B100BEFE20 /* CompassImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CompassImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		14BCB1B825CC41B100BEFE20 /* Compass Wallpaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Compass Wallpaper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14BCB1BB25CC41B100BEFE20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14BCB1BD25CC41B100BEFE20 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		14BCB1BF25CC41B300BEFE20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		14BCB1C225CC41B300BEFE20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		14BCB1C425CC41B300BEFE20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14BCB1C525CC41B300BEFE20 /* CompassImage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CompassImage.entitlements; sourceTree = "<group>"; };
+		14BCB1CC25CC438E00BEFE20 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +47,7 @@
 		14BCB1B925CC41B100BEFE20 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				14BCB1B825CC41B100BEFE20 /* CompassImage.app */,
+				14BCB1B825CC41B100BEFE20 /* Compass Wallpaper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -54,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				14BCB1BB25CC41B100BEFE20 /* AppDelegate.swift */,
+				14BCB1CC25CC438E00BEFE20 /* ImageViewController.swift */,
 				14BCB1BD25CC41B100BEFE20 /* ViewController.swift */,
 				14BCB1BF25CC41B300BEFE20 /* Assets.xcassets */,
 				14BCB1C125CC41B300BEFE20 /* Main.storyboard */,
@@ -80,7 +83,7 @@
 			);
 			name = CompassImage;
 			productName = CompassImage;
-			productReference = 14BCB1B825CC41B100BEFE20 /* CompassImage.app */;
+			productReference = 14BCB1B825CC41B100BEFE20 /* Compass Wallpaper.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -133,6 +136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14BCB1BE25CC41B100BEFE20 /* ViewController.swift in Sources */,
+				14BCB1CD25CC438E00BEFE20 /* ImageViewController.swift in Sources */,
 				14BCB1BC25CC41B100BEFE20 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,7 +286,7 @@
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.benswift.CompassImage;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Compass Wallpaper";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -303,7 +307,7 @@
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.benswift.CompassImage;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Compass Wallpaper";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
