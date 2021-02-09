@@ -17,6 +17,8 @@ enum LayoutOption {
 
 class ImageViewController: NSViewController {
 
+    @IBOutlet weak var backBox: NSBox!
+    @IBOutlet weak var imageShadowBox: NSBox!
     @IBOutlet weak var displayImage: NSImageView!
     @IBOutlet weak var choosePanelLayout: NSButton!
     @IBOutlet weak var chooseFrameLayout: NSButton!
@@ -27,13 +29,28 @@ class ImageViewController: NSViewController {
     var selectedImage: NSImage!
     var currentSelectedButton: LayoutOption!
     
+    @IBOutlet weak var panelIndicator: NSImageView!
+    @IBOutlet weak var frameIndicator: NSImageView!
+    @IBOutlet weak var bannerIndicator: NSImageView!
+    @IBOutlet weak var pillIndicator: NSImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.title = "Choose an Image and Layout"
         currentSelectedButton = .None
-        hideSelectionButtons(hideOrShow: true)
+        hideSelectionButtons(hideOrShow: false)
+        
+        self.displayImage.wantsLayer = true
+        self.displayImage.layer?.cornerRadius = 12
+        self.displayImage.layer?.masksToBounds = true
+        
+        setUpUI(image: choosePanelLayout)
+        setUpUI(image: chooseFrameLayout)
+        setUpUI(image: chooseBannerLayout)
+        setUpUI(image: choosePillLayout)
         
     }
     
@@ -48,15 +65,18 @@ class ImageViewController: NSViewController {
     }
     
     // - Helper Functions
-    func setUpUI() {
+    func setUpUI(image: NSButton) {
         print("Setting up the UI")
+        image.wantsLayer = true
+        image.layer?.cornerRadius = 8
+        image.layer?.masksToBounds = true
     }
     
     func hideSelectionButtons(hideOrShow: Bool) {
-        self.choosePanelLayout.isHidden = hideOrShow
-        self.chooseFrameLayout.isHidden = hideOrShow
-        self.chooseBannerLayout.isHidden = hideOrShow
-        self.choosePillLayout.isHidden = hideOrShow
+        self.choosePanelLayout.isEnabled = hideOrShow
+        self.chooseFrameLayout.isEnabled = hideOrShow
+        self.chooseBannerLayout.isEnabled = hideOrShow
+        self.choosePillLayout.isEnabled = hideOrShow
     }
     
     func createImage(layout: LayoutOption) -> NSImage {
@@ -116,12 +136,18 @@ class ImageViewController: NSViewController {
                 print(panel.urls[0])
                 self.selectedImage = NSImage(contentsOf: panel.urls[0])
                 self.displayImage.image = self.selectedImage
-                self.hideSelectionButtons(hideOrShow: false)
+                self.hideSelectionButtons(hideOrShow: true)
                 self.choosePanelLayout.image = self.createImage(layout: .Panel)
                 self.chooseFrameLayout.image = self.createImage(layout: .Frame)
                 self.chooseBannerLayout.image = self.createImage(layout: .Banner)
                 self.choosePillLayout.image = self.createImage(layout: .Pill)
                 self.currentSelectedButton = .None
+                let shadow = NSShadow()
+                shadow.shadowOffset = NSMakeSize(2, -2)
+                shadow.shadowColor = NSColor.lightGray
+                shadow.shadowBlurRadius = 25
+
+                self.imageShadowBox.shadow = shadow
           }
         }
 
