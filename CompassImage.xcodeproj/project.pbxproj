@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1402441325D422020013734A /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1402441225D422020013734A /* AboutViewController.swift */; };
 		14BCB1BC25CC41B100BEFE20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BCB1BB25CC41B100BEFE20 /* AppDelegate.swift */; };
 		14BCB1BE25CC41B100BEFE20 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BCB1BD25CC41B100BEFE20 /* ViewController.swift */; };
 		14BCB1C025CC41B300BEFE20 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14BCB1BF25CC41B300BEFE20 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1402441225D422020013734A /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		14BCB1B825CC41B100BEFE20 /* Compass Wallpaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Compass Wallpaper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14BCB1BB25CC41B100BEFE20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14BCB1BD25CC41B100BEFE20 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 				14BCB1BB25CC41B100BEFE20 /* AppDelegate.swift */,
 				14BCB1CC25CC438E00BEFE20 /* ImageViewController.swift */,
 				14BCB1BD25CC41B100BEFE20 /* ViewController.swift */,
+				1402441225D422020013734A /* AboutViewController.swift */,
 				14BCB1BF25CC41B300BEFE20 /* Assets.xcassets */,
 				14BCB1C125CC41B300BEFE20 /* Main.storyboard */,
 				14BCB1C425CC41B300BEFE20 /* Info.plist */,
@@ -137,6 +140,7 @@
 			files = (
 				14BCB1BE25CC41B100BEFE20 /* ViewController.swift in Sources */,
 				14BCB1CD25CC438E00BEFE20 /* ImageViewController.swift in Sources */,
+				1402441325D422020013734A /* AboutViewController.swift in Sources */,
 				14BCB1BC25CC41B100BEFE20 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

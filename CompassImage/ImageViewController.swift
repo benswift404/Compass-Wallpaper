@@ -19,16 +19,18 @@ class ImageViewController: NSViewController {
 
     @IBOutlet weak var backBox: NSBox!
     @IBOutlet weak var imageShadowBox: NSBox!
-    @IBOutlet weak var displayImage: NSImageView!
+    @IBOutlet weak var displayImage: NSButton!
     @IBOutlet weak var choosePanelLayout: NSButton!
     @IBOutlet weak var chooseFrameLayout: NSButton!
     @IBOutlet weak var chooseBannerLayout: NSButton!
     @IBOutlet weak var choosePillLayout: NSButton!
     @IBOutlet weak var saveButton: NSButton!
+    @IBOutlet weak var cancelButton: NSButton!
     
     var selectedImage: NSImage!
     var currentSelectedButton: LayoutOption!
     
+    @IBOutlet weak var chooseLayoutHeaderText: NSTextField!
     @IBOutlet weak var panelIndicator: NSImageView!
     @IBOutlet weak var frameIndicator: NSImageView!
     @IBOutlet weak var bannerIndicator: NSImageView!
@@ -39,7 +41,7 @@ class ImageViewController: NSViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.title = "Choose an Image and Layout"
+        self.title = "Compass Wallpaper"
         currentSelectedButton = .None
         hideSelectionButtons(hideOrShow: false)
         
@@ -51,6 +53,15 @@ class ImageViewController: NSViewController {
         setUpUI(image: chooseFrameLayout)
         setUpUI(image: chooseBannerLayout)
         setUpUI(image: choosePillLayout)
+        
+        panelIndicator.isHidden = true
+        frameIndicator.isHidden = true
+        bannerIndicator.isHidden = true
+        pillIndicator.isHidden = true
+        
+        chooseLayoutHeaderText.textColor = .lightGray
+        saveButton.isEnabled = false
+        cancelButton.isEnabled = false
         
     }
     
@@ -77,6 +88,41 @@ class ImageViewController: NSViewController {
         self.chooseFrameLayout.isEnabled = hideOrShow
         self.chooseBannerLayout.isEnabled = hideOrShow
         self.choosePillLayout.isEnabled = hideOrShow
+    }
+    
+    func showIndicatorFor(layout: LayoutOption) {
+        switch layout {
+        case .Panel:
+            panelIndicator.isHidden = false
+            frameIndicator.isHidden = true
+            bannerIndicator.isHidden = true
+            pillIndicator.isHidden = true
+            break
+        case .Frame:
+            panelIndicator.isHidden = true
+            frameIndicator.isHidden = false
+            bannerIndicator.isHidden = true
+            pillIndicator.isHidden = true
+            break
+        case .Banner:
+            panelIndicator.isHidden = true
+            frameIndicator.isHidden = true
+            bannerIndicator.isHidden = false
+            pillIndicator.isHidden = true
+            break
+        case .Pill:
+            panelIndicator.isHidden = true
+            frameIndicator.isHidden = true
+            bannerIndicator.isHidden = true
+            pillIndicator.isHidden = false
+            break
+        default:
+            panelIndicator.isHidden = true
+            frameIndicator.isHidden = true
+            bannerIndicator.isHidden = true
+            pillIndicator.isHidden = true
+            break
+        }
     }
     
     func createImage(layout: LayoutOption) -> NSImage {
@@ -121,7 +167,7 @@ class ImageViewController: NSViewController {
         
         return newImage
     }
-
+    
     @IBAction func selectImageAction(_ sender: Any) {
         guard let window = view.window else { return }
 
@@ -131,7 +177,7 @@ class ImageViewController: NSViewController {
         panel.allowsMultipleSelection = false
         panel.allowedFileTypes = ["png", "jpg", "jpeg"]
 
-        panel.beginSheetModal(for: window) { (result) in
+        panel.beginSheetModal(for: window) { [self] (result) in
             if result.rawValue == NSApplication.ModalResponse.OK.rawValue {
                 print(panel.urls[0])
                 self.selectedImage = NSImage(contentsOf: panel.urls[0])
@@ -148,6 +194,15 @@ class ImageViewController: NSViewController {
                 shadow.shadowBlurRadius = 25
 
                 self.imageShadowBox.shadow = shadow
+                
+                self.chooseLayoutHeaderText.textColor = .black
+                saveButton.isEnabled = true
+                cancelButton.isEnabled = true
+                
+                panelIndicator.isHidden = true
+                frameIndicator.isHidden = true
+                bannerIndicator.isHidden = true
+                pillIndicator.isHidden = true
           }
         }
 
@@ -155,6 +210,7 @@ class ImageViewController: NSViewController {
     
     @IBAction func choosePanelLayoutAction(_ sender: Any) {
         if currentSelectedButton != .Panel {
+            showIndicatorFor(layout: .Panel)
             self.displayImage.image = createImage(layout: .Panel)
             currentSelectedButton = .Panel
         }
@@ -162,6 +218,7 @@ class ImageViewController: NSViewController {
     
     @IBAction func chooseFrameLayoutAction(_ sender: Any) {
         if currentSelectedButton != .Frame {
+            showIndicatorFor(layout: .Frame)
             self.displayImage.image = createImage(layout: .Frame)
             currentSelectedButton = .Frame
         }
@@ -169,6 +226,7 @@ class ImageViewController: NSViewController {
     
     @IBAction func chooseBannerLayoutAction(_ sender: Any) {
         if currentSelectedButton != .Banner {
+            showIndicatorFor(layout: .Banner)
             self.displayImage.image = createImage(layout: .Banner)
             currentSelectedButton = .Banner
         }
@@ -176,8 +234,24 @@ class ImageViewController: NSViewController {
     
     @IBAction func choosePillLayoutAction(_ sender: Any) {
         if currentSelectedButton != .Pill {
+            showIndicatorFor(layout: .Pill)
             self.displayImage.image = createImage(layout: .Pill)
             currentSelectedButton = .Pill
+        }
+    }
+    
+    @IBAction func cancelButtonAction(_ sender: Any) {
+        guard let window = view.window else { return }
+        
+        let alert = NSAlert()
+        alert.messageText = "Are you sure you want to quit?"
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "Yes")
+        alert.addButton(withTitle: "Cancel")
+        alert.beginSheetModal(for: window) { (modalResponse) in
+            if modalResponse == .alertFirstButtonReturn {
+                NSApplication.shared.terminate(self)
+            }
         }
     }
     
@@ -194,10 +268,10 @@ class ImageViewController: NSViewController {
                         NSSound.beep()
                         print("Success!")
                         let alert = NSAlert()
-                        alert.messageText = "Success!"
-                        alert.informativeText = "Your new wallpaper has been save to \(String(describing: savePanel.url!))!"
+                        alert.messageText = "Success! 😎"
+                        alert.informativeText = "Your new wallpaper has been saved!"
                         alert.alertStyle = .informational
-                        alert.addButton(withTitle: "OK")
+                        alert.addButton(withTitle: "Ok")
                         alert.runModal()
                     } catch {
                         NSSound.beep()
@@ -206,7 +280,7 @@ class ImageViewController: NSViewController {
                         alert.messageText = "Error!"
                         alert.informativeText = "Something went wrong and we couldn't save the file. Try again"
                         alert.alertStyle = .informational
-                        alert.addButton(withTitle: "OK")
+                        alert.addButton(withTitle: "Ok")
                         alert.runModal()
                     }
                 }
